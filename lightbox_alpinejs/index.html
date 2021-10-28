@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpinejs lightbox</title>
+    <script src="https://unpkg.com/alpinejs@3.3.4/dist/cdn.min.js" defer></script>
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+        <!-- Components-->
+        <div class="lightbox" x-data="{lightboxOpen: false, imgSrc: '', caption: ''}" x-show="lightboxOpen" x-transition.opacity
+        @lightbox.window="lightboxOpen = true; imgSrc = $event.detail.src; caption = $event.detail.caption">
+        <div class="lightbox-container">
+          <div class="lightbox-content" x-show="lightboxOpen" x-transition.scale>
+            <button class="lightbox-close" @click="lightboxOpen = false">&times;</button>
+            <img :src="imgSrc" @click.away="lightboxOpen = false">
+            <p x-text="caption" class="caption"></p>
+          </div>
+        </div>
+        </div>
+        <!--Akhir Components-->
+
+  <!--Components Gallery-->
+  <div x-data class="gallery">
+    <img src="https://picsum.photos/id/1/160/160"
+      @click="$dispatch('lightbox', {src: 'https://picsum.photos/id/1/640/360', caption: 'Gambar 1'})" />
+    <img src="https://picsum.photos/id/2/160/160"
+      @click="$dispatch('lightbox', {src: 'https://picsum.photos/id/2/640/360', caption: 'Gambar 2'})" />
+    <img src="https://picsum.photos/id/3/160/160"
+      @click="$dispatch('lightbox', {src: 'https://picsum.photos/id/3/640/360', caption: 'Gambar 3'})" />
+    <img src="https://picsum.photos/id/4/160/160"
+      @click="$dispatch('lightbox', {src: 'https://picsum.photos/id/4/640/360', caption: 'Gambar 4'})" />
+  </div>
+<!--Akhir Components-->
+
+</body>
+</html>
